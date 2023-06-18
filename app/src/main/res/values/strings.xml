@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Voluntrix-App</string>
     <string name="voluntrix">Voluntrix</string>
+    <string name="welcome_text">Welcome to Voluntrix</string>
+    <string name="login_txt">Login Via Google</string>
+    <string name="login_with_google">Login With Google</string>
 </resources>
