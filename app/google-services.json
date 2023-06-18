@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "127791978657",
+    "project_id": "voluntrix-app",
+    "storage_bucket": "voluntrix-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127791978657:android:0c868a0741425a9d3138e0",
+        "android_client_info": {
+          "package_name": "com.example.voluntrix_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127791978657-76el7dqnkridurs8b8giujkpkm3k1gq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKy2GT8yIkXqdy8YPOsodH13qtR5ZsYy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127791978657-76el7dqnkridurs8b8giujkpkm3k1gq5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
