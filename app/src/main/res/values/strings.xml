@@ -4,4 +4,16 @@
     <string name="welcome_text">Welcome to Voluntrix</string>
     <string name="login_txt">Login Via Google</string>
     <string name="login_with_google">Login With Google</string>
+    <string name="category">Category</string>
+    <string name="level">Level</string>
+    <string name="location">Location</string>
+    <string name="music_events">Music Events</string>
+    <string name="dance_concerts">Dance Concerts</string>
+    <string name="food_festival">Food Festival</string>
+    <string name="gender">Gender</string>
+    <string name="management">Management</string>
+    <string name="host">Host</string>
+    <string name="photography">Photography</string>
+    <string name="dj_console">DJ Console</string>
+    <string name="done">Done</string>
 </resources>

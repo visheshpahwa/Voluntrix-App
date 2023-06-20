@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity(){
                 .addOnCompleteListener{task->
                     if(task.isSuccessful){
 
-                        val i  = Intent(this,MainActivity::class.java)
+                        val i  = Intent(this,OnBoardingActivity::class.java)
                         startActivity(i)
 
                     }else{
@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity(){
     override fun onStart() {
         super.onStart()
         if(FirebaseAuth.getInstance().currentUser != null){
-            val i  = Intent(this,MainActivity::class.java)
+            val i  = Intent(this,OnBoardingActivity::class.java)
             startActivity(i)
         }
     }
