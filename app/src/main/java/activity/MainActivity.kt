@@ -1,14 +1,18 @@
-package com.example.voluntrix_app
+package activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.FrameLayout
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import fragment.AboutAppFragment
+import fragment.BookmarksFragment
+import fragment.DashboardFragment
+import com.example.voluntrix_app.R
+import fragment.UserProfileFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +41,8 @@ class MainActivity : AppCompatActivity() {
             this@MainActivity,
             drawerLayout,
             R.string.open_drawer,
-            R.string.close_drawer)
+            R.string.close_drawer
+        )
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()

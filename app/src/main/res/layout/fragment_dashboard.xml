@@ -3,15 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardFragment">
+    tools:context="fragment.DashboardFragment">
+
+
+    <ImageButton
+        android:id="@+id/img_btn_notification"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:background="#FFFFFF"
+        android:src="@drawable/ic_notification" />
+    <ImageButton
+        android:id="@+id/img_btn_home"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
+        android:background="#FFFFFF"
+        android:src="@drawable/ic_home_button" />
+    <ImageButton
+        android:id="@+id/img_btn_message"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:background="#FFFFFF"
+        android:src="@drawable/ic_inbox" />
+
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="5dp"
-        />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="60dp"
+        android:padding="10dp" />
 
 </RelativeLayout>
