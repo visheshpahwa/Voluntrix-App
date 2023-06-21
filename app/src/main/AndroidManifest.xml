@@ -29,11 +29,12 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-          <activity
-          android:name=".OnBoardingActivity"
-            android:exported="false" />
+
 
         </activity>
+        <activity
+            android:name=".OnBoardingActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
