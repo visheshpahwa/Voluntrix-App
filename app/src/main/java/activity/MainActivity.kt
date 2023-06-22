@@ -64,7 +64,8 @@ class MainActivity : AppCompatActivity() {
             val name = account.displayName
             val email = account.email
             val photo = account.photoUrl
-            userName.setText(name)
+            val displayName="Hey, "+name
+            userName.setText(displayName)
             Glide.with(this).load(photo).into(userImg);
         }
         auth = FirebaseAuth.getInstance()
@@ -97,35 +98,35 @@ class MainActivity : AppCompatActivity() {
             it.isChecked = true
             previousMenuItem = it
 
-//            when(it.itemId){
-//                R.id.dashboard -> {
-//                    openDashboard()
-//                    drawerLayout.closeDrawers()
-//                }
-//
-//                R.id.bookmarks -> {
-//                    supportFragmentManager.beginTransaction()
-//                        .replace(R.id.frame, BookmarksFragment())
-//                        .commit()
-//                    supportActionBar?.title = "Bookmarks"
-//                    drawerLayout.closeDrawers()
-//                }
-//
-//                R.id.profile -> {
-//                    supportFragmentManager.beginTransaction()
-//                        .replace(R.id.frame, UserProfileFragment())
-//                        .commit()
-//                    supportActionBar?.title = "User Profile"
-//                    drawerLayout.closeDrawers()
-//                }
-//                R.id.aboutApp -> {
-//                    supportFragmentManager.beginTransaction()
-//                        .replace(R.id.frame, AboutAppFragment())
-//                        .commit()
-//                    supportActionBar?.title = "About App"
-//                    drawerLayout.closeDrawers()
-//                }
-//            }
+            when(it.itemId){
+                com.example.voluntrix_app.R.id.dashboard -> {
+                    openDashboard()
+                    drawerLayout.closeDrawers()
+                }
+
+                com.example.voluntrix_app.R.id.bookmarks -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(com.example.voluntrix_app.R.id.frame, BookmarksFragment())
+                        .commit()
+                    supportActionBar?.title = "Bookmarks"
+                    drawerLayout.closeDrawers()
+                }
+
+                com.example.voluntrix_app.R.id.profile -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(com.example.voluntrix_app.R.id.frame, UserProfileFragment())
+                        .commit()
+                    supportActionBar?.title = "User Profile"
+                    drawerLayout.closeDrawers()
+                }
+                com.example.voluntrix_app.R.id.aboutApp -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(com.example.voluntrix_app.R.id.frame, AboutAppFragment())
+                        .commit()
+                    supportActionBar?.title = "About App"
+                    drawerLayout.closeDrawers()
+                }
+            }
             return@setNavigationItemSelectedListener true
         }
     }
@@ -148,21 +149,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openDashboard(){
-//        val fragment = DashboardFragment()
-//        val transaction = supportFragmentManager.beginTransaction()
-//            transaction.replace(R.id.frame, fragment)
-//            transaction.commit()
-//        supportActionBar?.title = "Dashboard"
-//        navigationView.setCheckedItem(R.id.dashboard)
+        val fragment = DashboardFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(com.example.voluntrix_app.R.id.frame, fragment)
+            transaction.commit()
+        supportActionBar?.title = "Dashboard"
+        navigationView.setCheckedItem(com.example.voluntrix_app.R.id.dashboard)
     }
 
     override fun onBackPressed() {
-//        val frag = supportFragmentManager.findFragmentById(R.id.frame)
-//
-//        when(frag){
-//            !is DashboardFragment -> openDashboard()
-//            else -> super.onBackPressed()
-//        }
+        val frag = supportFragmentManager.findFragmentById(com.example.voluntrix_app.R.id.frame)
+
+        when(frag){
+            !is DashboardFragment -> openDashboard()
+            else -> super.onBackPressed()
+        }
     }
 
 }
