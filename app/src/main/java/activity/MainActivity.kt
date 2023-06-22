@@ -1,19 +1,29 @@
 package activity
 
-import androidx.appcompat.app.AppCompatActivity
+import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.bumptech.glide.Glide
+import com.example.voluntrix_app.LoginActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import fragment.AboutAppFragment
 import fragment.BookmarksFragment
 import fragment.DashboardFragment
-import com.example.voluntrix_app.R
 import fragment.UserProfileFragment
-import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,25 +33,56 @@ class MainActivity : AppCompatActivity() {
     lateinit var frameLayout: FrameLayout
     lateinit var navigationView: NavigationView
 
+    lateinit var btnLogout: Button
+    lateinit var userName:TextView
+    lateinit var userImg:ImageView
+
+    lateinit var auth: FirebaseAuth
+
     var previousMenuItem: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        drawerLayout = findViewById(R.id.drawerLayout)
-        coordinatorLayout = findViewById(R.id.coordinatorLayout)
-        toolbar = findViewById(R.id.toolbar)
-        frameLayout = findViewById(R.id.frame)
-        navigationView = findViewById(R.id.navigationView)
+        setContentView(com.example.voluntrix_app.R.layout.activity_main)
+        drawerLayout = findViewById(com.example.voluntrix_app.R.id.drawerLayout)
+        coordinatorLayout = findViewById(com.example.voluntrix_app.R.id.coordinatorLayout)
+        toolbar = findViewById(com.example.voluntrix_app.R.id.toolbar)
+        frameLayout = findViewById(com.example.voluntrix_app.R.id.frame)
+        navigationView = findViewById(com.example.voluntrix_app.R.id.navigationView)
         setUpToolbar()
 
         openDashboard()
 
+        val headerView = navigationView.getHeaderView(0)
+
+        btnLogout = headerView.findViewById(com.example.voluntrix_app.R.id.btnLogout)
+        userImg=headerView.findViewById(com.example.voluntrix_app.R.id.userImg)
+        userName=headerView.findViewById(com.example.voluntrix_app.R.id.userName)
+
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+        if (account!=null){
+            val name = account.displayName
+            val email = account.email
+            val photo = account.photoUrl
+            userName.setText(name)
+            Glide.with(this).load(photo).into(userImg);
+        }
+        auth = FirebaseAuth.getInstance()
+         btnLogout.setOnClickListener {
+             auth.signOut()
+
+             // Perform the action when the button is clicked
+             val intent = Intent(this@MainActivity, LoginActivity::class.java)
+             startActivity(intent)
+             finish()
+         }
+
+
         val actionBarDrawerToggle = ActionBarDrawerToggle(
             this@MainActivity,
             drawerLayout,
-            R.string.open_drawer,
-            R.string.close_drawer
+            com.example.voluntrix_app.R.string.open_drawer,
+            com.example.voluntrix_app.R.string.close_drawer
         )
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
@@ -56,35 +97,35 @@ class MainActivity : AppCompatActivity() {
             it.isChecked = true
             previousMenuItem = it
 
-            when(it.itemId){
-                R.id.dashboard -> {
-                    openDashboard()
-                    drawerLayout.closeDrawers()
-                }
-
-                R.id.bookmarks -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame, BookmarksFragment())
-                        .commit()
-                    supportActionBar?.title = "Bookmarks"
-                    drawerLayout.closeDrawers()
-                }
-
-                R.id.profile -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame, UserProfileFragment())
-                        .commit()
-                    supportActionBar?.title = "User Profile"
-                    drawerLayout.closeDrawers()
-                }
-                R.id.aboutApp -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame, AboutAppFragment())
-                        .commit()
-                    supportActionBar?.title = "About App"
-                    drawerLayout.closeDrawers()
-                }
-            }
+//            when(it.itemId){
+//                R.id.dashboard -> {
+//                    openDashboard()
+//                    drawerLayout.closeDrawers()
+//                }
+//
+//                R.id.bookmarks -> {
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.frame, BookmarksFragment())
+//                        .commit()
+//                    supportActionBar?.title = "Bookmarks"
+//                    drawerLayout.closeDrawers()
+//                }
+//
+//                R.id.profile -> {
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.frame, UserProfileFragment())
+//                        .commit()
+//                    supportActionBar?.title = "User Profile"
+//                    drawerLayout.closeDrawers()
+//                }
+//                R.id.aboutApp -> {
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.frame, AboutAppFragment())
+//                        .commit()
+//                    supportActionBar?.title = "About App"
+//                    drawerLayout.closeDrawers()
+//                }
+//            }
             return@setNavigationItemSelectedListener true
         }
     }
@@ -107,21 +148,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openDashboard(){
-        val fragment = DashboardFragment()
-        val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame, fragment)
-            transaction.commit()
-        supportActionBar?.title = "Dashboard"
-        navigationView.setCheckedItem(R.id.dashboard)
+//        val fragment = DashboardFragment()
+//        val transaction = supportFragmentManager.beginTransaction()
+//            transaction.replace(R.id.frame, fragment)
+//            transaction.commit()
+//        supportActionBar?.title = "Dashboard"
+//        navigationView.setCheckedItem(R.id.dashboard)
     }
 
     override fun onBackPressed() {
-        val frag = supportFragmentManager.findFragmentById(R.id.frame)
-
-        when(frag){
-            !is DashboardFragment -> openDashboard()
-            else -> super.onBackPressed()
-        }
+//        val frag = supportFragmentManager.findFragmentById(R.id.frame)
+//
+//        when(frag){
+//            !is DashboardFragment -> openDashboard()
+//            else -> super.onBackPressed()
+//        }
     }
 
 }
