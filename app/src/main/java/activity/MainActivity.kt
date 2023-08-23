@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.example.voluntrix_app.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import fragment.AboutAppFragment
@@ -72,10 +73,22 @@ class MainActivity : AppCompatActivity() {
          btnLogout.setOnClickListener {
              auth.signOut()
 
+             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                 .build()
+             val googleSignInClient = GoogleSignIn.getClient(this, gso)
+             googleSignInClient.signOut().addOnCompleteListener(this) {
+                 // Redirect to the login or home screen as needed
+                 // For example, you can navigate back to your login activity
+                  startActivity(Intent(this, LoginActivity::class.java))
+
+                 // Finish the current activity to prevent returning to it using the back button
+                 finish()
+             }
+
              // Perform the action when the button is clicked
-             val intent = Intent(this@MainActivity, LoginActivity::class.java)
-             startActivity(intent)
-             finish()
+//             val intent = Intent(this@MainActivity, LoginActivity::class.java)
+//             startActivity(intent)
+//             finish()
          }
 
 
