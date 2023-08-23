@@ -1,18 +1,16 @@
-package adapter
+package com.example.voluntrix_app
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.voluntrix_app.R
 import model.Event
 
-class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Event>) : RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>() {
+class DashboardRecyclerAdapter(val context: MutableList<Event>, val itemList: ArrayList<Event>) : RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_dashboard_single_row, parent, false)
         return DashboardViewHolder(view)
