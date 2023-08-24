@@ -4,10 +4,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.voluntrix_app.Events
 import com.example.voluntrix_app.R
+//import model.Event
+import com.example.voluntrix_app.Event
 
-class EventAdapter(private val events: MutableList<Events>) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+
+class EventAdapter(private val events: MutableList<Event>) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imgRecyclerRowItem)
@@ -28,7 +30,7 @@ class EventAdapter(private val events: MutableList<Events>) : RecyclerView.Adapt
         // Set event data to the views
         holder.imageView.setImageResource(R.drawable.birthday_event) // Replace with your image resource
         holder.titleTextView.text = event.title
-        holder.descriptionTextView.text = event.content
+        holder.descriptionTextView.text = event.description
         holder.anotherTextView.text = "Additional Text" // Set your text here
     }
 

@@ -101,7 +101,7 @@ public class OnBoardingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Perform the action when the button is clicked
-                Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
+                Intent intent = new Intent(OnBoardingActivity.this, DashboardActivity.class);
                 startActivity(intent);
             }
         });

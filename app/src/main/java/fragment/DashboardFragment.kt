@@ -1,7 +1,6 @@
 package fragment
 
 import EventAdapter
-import com.example.voluntrix_app.DashboardRecyclerAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.voluntrix_app.Events
 import com.example.voluntrix_app.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import model.Event
 
 class DashboardFragment : Fragment() {
@@ -20,9 +22,9 @@ class DashboardFragment : Fragment() {
 //    lateinit var recyclerAdapter: DashboardRecyclerAdapter
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var eventAdapter: DashboardRecyclerAdapter
+    private lateinit var eventAdapter: EventAdapter
 //    private val eventsList = mutableListOf<Event>()
-    private val eventsList = mutableListOf<Events>()
+    private val eventsList = mutableListOf<com.example.voluntrix_app.Event>()
 
 
 
@@ -44,7 +46,43 @@ class DashboardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+
+
         }
+    }
+    private fun getUserData() {
+
+        val database = FirebaseDatabase.getInstance()
+        val eventsRef = database.getReference("events")
+
+        val valueEventListener= object : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if (snapshot.exists()){
+
+                    for (userSnapshot in snapshot.children){
+
+
+                        val event = userSnapshot.getValue(com.example.voluntrix_app.Event::class.java)
+                        eventsList.add(event!!)
+
+                    }
+
+                    recyclerView.adapter = EventAdapter(eventsList)
+
+
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+
+        }
+
     }
 
     override fun onCreateView(
@@ -69,6 +107,30 @@ class DashboardFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = eventAdapter
 
+        val database = FirebaseDatabase.getInstance()
+        val eventsRef = database.getReference("events")
+
+        val valueEventListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                eventsList.clear() // Clear the list before adding data
+
+                for (snapshot in dataSnapshot.children) {
+                    val event = snapshot.getValue(com.example.voluntrix_app.Event::class.java)
+                    if (event != null) {
+                        eventsList.add(event)
+                    }
+                }
+
+                // Notify the adapter that the data has changed
+                eventAdapter.notifyDataSetChanged()
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle the error
+            }
+        }
+
+        // Attach the ValueEventListener to your events reference
+        eventsRef.addValueEventListener(valueEventListener)
 
 
 //        recyclerView = view.findViewById(R.id.recyclerDashboard)
