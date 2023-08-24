@@ -1,5 +1,7 @@
 package com.example.voluntrix_app
 
+import activity.MainActivity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -45,8 +47,27 @@ class LoginActivity : AppCompatActivity(){
                 .addOnCompleteListener{task->
                     if(task.isSuccessful){
 
-                        val i  = Intent(this,OnBoardingActivity::class.java)
-                        startActivity(i)
+//                        val i  = Intent(this,OnBoardingActivity::class.java)
+//                        startActivity(i)
+
+                        // Inside your MainActivity or SplashScreen activity, where you decide which activity to launch first
+                        val isFirstLaunch = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                            .getBoolean("isFirstLaunch", true)
+
+                        if (isFirstLaunch) {
+                            // The app is launched for the first time, so start the OnboardingActivity
+                            startActivity(Intent(this, OnBoardingActivity::class.java))
+
+                            // Mark that the app has been launched before
+                            val editor = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE).edit()
+                            editor.putBoolean("isFirstLaunch", false)
+                            editor.apply()
+                        } else {
+                            // It's not the first launch, so start your main app activity or login screen
+                            startActivity(Intent(this, MainActivity::class.java))
+                        }
+                        finish()
+
 
                     }else{
                         Toast.makeText(this,task.exception?.message,Toast.LENGTH_SHORT).show()
@@ -59,8 +80,22 @@ class LoginActivity : AppCompatActivity(){
     override fun onStart() {
         super.onStart()
         if(FirebaseAuth.getInstance().currentUser != null){
-            val i  = Intent(this,OnBoardingActivity::class.java)
-            startActivity(i)
+            val isFirstLaunch = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                .getBoolean("isFirstLaunch", true)
+
+            if (isFirstLaunch) {
+                // The app is launched for the first time, so start the OnboardingActivity
+                startActivity(Intent(this, OnBoardingActivity::class.java))
+
+                // Mark that the app has been launched before
+                val editor = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE).edit()
+                editor.putBoolean("isFirstLaunch", false)
+                editor.apply()
+            } else {
+                // It's not the first launch, so start your main app activity or login screen
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+            finish()
         }
     }
 

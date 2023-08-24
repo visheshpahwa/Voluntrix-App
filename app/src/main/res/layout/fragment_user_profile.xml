@@ -6,9 +6,38 @@
     tools:context="fragment.UserProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/voluntrix_logo"
+        android:id="@+id/userImg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"/>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/userImg"
+        android:layout_centerHorizontal="true"
+        android:text="@string/navigation_drawer"
+        android:textColor="#8F43EE"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/userEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_below="@+id/userName"
+        android:layout_centerHorizontal="true"
+        android:text="@string/email"
+        android:textColor="#8F43EE"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
