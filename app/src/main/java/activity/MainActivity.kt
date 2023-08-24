@@ -1,6 +1,7 @@
 package activity
 
 import android.R
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -10,6 +11,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
@@ -171,12 +173,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val frag = supportFragmentManager.findFragmentById(com.example.voluntrix_app.R.id.frame)
-
-        when(frag){
-            !is DashboardFragment -> openDashboard()
-            else -> super.onBackPressed()
+        // Create an AlertDialog to confirm if the user wants to exit the app
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Are you sure you want to exit?")
+        builder.setPositiveButton("Yes") { dialog: DialogInterface?, which: Int ->
+            // If the user confirms, close the app
+            finish()
         }
+        builder.setNegativeButton("No") { dialog: DialogInterface?, which: Int ->
+            // If the user cancels, do nothing (close the dialog)
+        }
+
+        // Show the AlertDialog
+        val alertDialog = builder.create()
+        alertDialog.show()
     }
 
 }

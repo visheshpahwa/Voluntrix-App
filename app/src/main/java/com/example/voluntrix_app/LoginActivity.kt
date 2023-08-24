@@ -80,8 +80,22 @@ class LoginActivity : AppCompatActivity(){
     override fun onStart() {
         super.onStart()
         if(FirebaseAuth.getInstance().currentUser != null){
-            val i  = Intent(this,OnBoardingActivity::class.java)
-            startActivity(i)
+            val isFirstLaunch = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                .getBoolean("isFirstLaunch", true)
+
+            if (isFirstLaunch) {
+                // The app is launched for the first time, so start the OnboardingActivity
+                startActivity(Intent(this, OnBoardingActivity::class.java))
+
+                // Mark that the app has been launched before
+                val editor = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE).edit()
+                editor.putBoolean("isFirstLaunch", false)
+                editor.apply()
+            } else {
+                // It's not the first launch, so start your main app activity or login screen
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+            finish()
         }
     }
 
