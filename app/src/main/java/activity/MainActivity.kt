@@ -25,7 +25,12 @@ import com.google.firebase.auth.FirebaseAuth
 import fragment.AboutAppFragment
 import fragment.BookmarksFragment
 import fragment.DashboardFragment
+
+import com.example.voluntrix_app.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import fragment.UserProfileFragment
+import com.google.android.material.navigation.NavigationView
+import fragment.NotificationFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         setUpToolbar()
 
         openDashboard()
+
 
         val headerView = navigationView.getHeaderView(0)
 
@@ -92,6 +98,7 @@ class MainActivity : AppCompatActivity() {
 //             startActivity(intent)
 //             finish()
          }
+
 
 
         val actionBarDrawerToggle = ActionBarDrawerToggle(
@@ -144,7 +151,41 @@ class MainActivity : AppCompatActivity() {
             }
             return@setNavigationItemSelectedListener true
         }
+
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
+        bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.home ->{
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame, DashboardFragment())
+                        .addToBackStack(null)
+                        .commit()
+                    supportActionBar?.title = "Dashboard"
+                    true
+                }
+                R.id.notification ->{
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame, NotificationFragment())
+                        .addToBackStack(null)
+                        .commit()
+                    supportActionBar?.title = "Notification"
+                    true
+                }
+                R.id.profile ->{
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame, UserProfileFragment())
+                        .addToBackStack(null)
+                        .commit()
+                    supportActionBar?.title = "User Profile"
+                    true
+                }
+                else -> false
+            }
+
+        }
     }
+
+
 
 
     fun setUpToolbar(){

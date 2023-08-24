@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voluntrix_app.R
 import model.Event
@@ -28,6 +30,10 @@ class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Eve
         holder.txtEventRequirement.text = event.eventRequirement
         holder.txtPrice.text = event.eventBudget
         holder.imgEvent.setImageResource(event.eventImage)
+
+        holder.rlContent.setOnClickListener {
+            Toast.makeText(context, "Clicked on ${holder.txtEventName.text}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     class DashboardViewHolder(view:View): RecyclerView.ViewHolder(view){
@@ -35,5 +41,6 @@ class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Eve
         val txtEventRequirement: TextView = view.findViewById(R.id.txtSubRecyclerRowItem)
         val imgEvent: ImageView = view.findViewById(R.id.imgRecyclerRowItem)
         val txtPrice: TextView = view.findViewById(R.id.txtPriceRecyclerRowItem)
+        val rlContent:RelativeLayout = view.findViewById(R.id.rlContent)
     }
 }

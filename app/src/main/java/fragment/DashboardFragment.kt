@@ -1,18 +1,20 @@
 package fragment
 
+import activity.MainActivity
 import adapter.DashboardRecyclerAdapter
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voluntrix_app.R
 import model.Event
+
 
 class DashboardFragment : Fragment() {
 
@@ -56,7 +58,13 @@ class DashboardFragment : Fragment() {
         recyclerDashboard.adapter = recyclerAdapter
 
         recyclerDashboard.layoutManager = layoutManager
+
+        recyclerDashboard.addItemDecoration(
+            DividerItemDecoration(
+                recyclerDashboard.context,(layoutManager as LinearLayoutManager).orientation
+            )
+        )
+
         return view
     }
-
 }
