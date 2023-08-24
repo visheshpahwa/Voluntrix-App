@@ -3,12 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#8F43EE"
     tools:context="fragment.BookmarksFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
+        android:id="@+id/recyclerFavourite"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/progressLayout"
         android:layout_height="match_parent"
-        android:text="Bookmark Fragment" />
+        android:background="#ffffff">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_centerInParent="true"/>
+
+
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

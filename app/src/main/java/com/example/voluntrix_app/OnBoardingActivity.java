@@ -11,6 +11,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import activity.MainActivity;
+
 
 public class OnBoardingActivity extends AppCompatActivity {
 

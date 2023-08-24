@@ -14,7 +14,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "127791978657-76el7dqnkridurs8b8giujkpkm3k1gq5.apps.googleusercontent.com",
+          "client_id": "127791978657-icnpjjgdq3jfjk925a9dtaf2o4n33stf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.voluntrix_app",
+            "certificate_hash": "0d8938905c38478a4ef34608f921537cc7d105d9"
+          }
+        },
+        {
+          "client_id": "127791978657-t4883e4aecqan5iiivfu822kbub9i01u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.voluntrix_app",
+            "certificate_hash": "a2a0dc77a62c0aa101658b935a4530d052b3dbf5"
+          }
+        },
+        {
+          "client_id": "127791978657-1bsivamroksssra4fu02t4c73jgtahat.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +43,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "127791978657-76el7dqnkridurs8b8giujkpkm3k1gq5.apps.googleusercontent.com",
+              "client_id": "127791978657-1bsivamroksssra4fu02t4c73jgtahat.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

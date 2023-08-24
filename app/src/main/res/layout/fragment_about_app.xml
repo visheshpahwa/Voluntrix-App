@@ -3,12 +3,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fragment.AboutAppFragment">
+    tools:context="fragment.AboutAppFragment"
+    android:background="#8F43EE"
+    android:id="@+id/aboutApp_fragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/txtAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="About Voluntrix"
+        android:textSize="26sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:layout_below="@id/txtAbout"
+        android:text="Join our app where hosts and volunteers unite to create impactful experiences. Connect with passionate event organizers and dedicated volunteers for meaningful events like weddings, seminars, and conferences."
+        android:lineSpacingExtra="5dp"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imgAbout"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/voluntrix_logo" />
+
+
+    <TextView
+        android:id="@+id/devAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgAbout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Developed By Team Voluntrix"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtEmailAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/devAbout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="help@voluntrix.com"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtClosure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txtEmailAbout"
+        android:layout_alignParentBottom="true"
+        android:text="Together, we can make a difference!"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
 
 </RelativeLayout>
