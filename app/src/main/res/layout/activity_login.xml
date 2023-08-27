@@ -32,6 +32,14 @@
         android:text="@string/login_with_google"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
+        android:textColor="@color/black"
+        android:background="@drawable/designer_button_bg"
+        android:textSize="18sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_gravity="center"
         android:id="@+id/btnLogin">
     </Button>
 
