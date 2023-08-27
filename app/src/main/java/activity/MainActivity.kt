@@ -1,11 +1,10 @@
 package activity
 
-import android.R
+
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -20,13 +19,11 @@ import com.bumptech.glide.Glide
 import com.example.voluntrix_app.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.material.navigation.NavigationView
+//import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import fragment.AboutAppFragment
-import fragment.BookmarksFragment
 import fragment.DashboardFragment
 
-import com.example.voluntrix_app.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import fragment.UserProfileFragment
 import com.google.android.material.navigation.NavigationView
@@ -78,26 +75,10 @@ class MainActivity : AppCompatActivity() {
             Glide.with(this).load(photo).into(userImg);
         }
         auth = FirebaseAuth.getInstance()
-         btnLogout.setOnClickListener {
-             auth.signOut()
 
-             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                 .build()
-             val googleSignInClient = GoogleSignIn.getClient(this, gso)
-             googleSignInClient.signOut().addOnCompleteListener(this) {
-                 // Redirect to the login or home screen as needed
-                 // For example, you can navigate back to your login activity
-                  startActivity(Intent(this, LoginActivity::class.java))
-
-                 // Finish the current activity to prevent returning to it using the back button
-                 finish()
-             }
-
-             // Perform the action when the button is clicked
-//             val intent = Intent(this@MainActivity, LoginActivity::class.java)
-//             startActivity(intent)
-//             finish()
-         }
+        btnLogout.setOnClickListener {
+            showLogoutConfirmationDialog()
+        }
 
 
 
@@ -126,13 +107,6 @@ class MainActivity : AppCompatActivity() {
                     drawerLayout.closeDrawers()
                 }
 
-                com.example.voluntrix_app.R.id.bookmarks -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(com.example.voluntrix_app.R.id.frame, BookmarksFragment())
-                        .commit()
-                    supportActionBar?.title = "Bookmarks"
-                    drawerLayout.closeDrawers()
-                }
 
                 com.example.voluntrix_app.R.id.profile -> {
                     supportFragmentManager.beginTransaction()
@@ -152,28 +126,28 @@ class MainActivity : AppCompatActivity() {
             return@setNavigationItemSelectedListener true
         }
 
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
+        val bottomNavigationView: BottomNavigationView = findViewById(com.example.voluntrix_app.R.id.bottomNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.home ->{
+                com.example.voluntrix_app.R.id.home ->{
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame, DashboardFragment())
+                        .replace(com.example.voluntrix_app.R.id.frame, DashboardFragment())
                         .addToBackStack(null)
                         .commit()
                     supportActionBar?.title = "Dashboard"
                     true
                 }
-                R.id.notification ->{
+                com.example.voluntrix_app.R.id.notification ->{
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame, NotificationFragment())
+                        .replace(com.example.voluntrix_app.R.id.frame, NotificationFragment())
                         .addToBackStack(null)
                         .commit()
                     supportActionBar?.title = "Notification"
                     true
                 }
-                R.id.profile ->{
+                com.example.voluntrix_app.R.id.profile ->{
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame, UserProfileFragment())
+                        .replace(com.example.voluntrix_app.R.id.frame, UserProfileFragment())
                         .addToBackStack(null)
                         .commit()
                     supportActionBar?.title = "User Profile"
@@ -185,7 +159,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showLogoutConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Logout Confirmation")
+        builder.setMessage("Are you sure you want to logout?")
+        builder.setPositiveButton("Yes") { dialog: DialogInterface, _: Int ->
+            // Perform logout and navigate to the login page
+            performLogout()
+        }
+        builder.setNegativeButton("No") { dialog: DialogInterface, _: Int ->
+            // Dismiss the dialog and do nothing
+            dialog.dismiss()
+        }
 
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun performLogout() {
+        auth.signOut()
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .build()
+        val googleSignInClient = GoogleSignIn.getClient(this, gso)
+        googleSignInClient.signOut().addOnCompleteListener(this) {
+            // Redirect to the login or home screen as needed
+            // For example, you can navigate back to your login activity
+            startActivity(Intent(this, LoginActivity::class.java))
+
+            // Finish the current activity to prevent returning to it using the back button
+            finish()
+        }
+        // After logging out, you can redirect the user to the login page or perform other actions.
+//        val intent = Intent(this, LoginActivity::class.java)
+//        startActivity(intent)
+//        finish()
+    }
 
 
     fun setUpToolbar(){
@@ -207,8 +216,8 @@ class MainActivity : AppCompatActivity() {
     fun openDashboard(){
         val fragment = DashboardFragment()
         val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(com.example.voluntrix_app.R.id.frame, fragment)
-            transaction.commit()
+        transaction.replace(com.example.voluntrix_app.R.id.frame, fragment)
+        transaction.commit()
         supportActionBar?.title = "Dashboard"
         navigationView.setCheckedItem(com.example.voluntrix_app.R.id.dashboard)
     }

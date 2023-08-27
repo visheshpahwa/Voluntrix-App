@@ -7,10 +7,6 @@
         android:title="@string/dashboard"
         android:icon="@drawable/ic_dashboard"/>
     <item
-        android:id="@+id/bookmarks"
-        android:title="@string/bookmarks"
-        android:icon="@drawable/ic_bookmarks"/>
-    <item
         android:id="@+id/profile"
         android:title="@string/user_profile"
         android:icon="@drawable/ic_user_profile"/>
